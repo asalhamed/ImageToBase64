@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImgToBase64"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Image to Base64 Converter" Height="450" Width="504"
+        d:DataContext="{d:DesignInstance local:MainModel, IsDesignTimeCreatable=False}"
+        >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="27" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <DockPanel Margin="3" Grid.Row="0">
+            <Label DockPanel.Dock="Top">Base64 Image Binary:</Label>
+            <TextBox IsReadOnly="True" IsReadOnlyCaretVisible="True" 
+                     AcceptsReturn="True" TextWrapping="Wrap"
+                     Text="{Binding ImageBase64, Mode=TwoWay}"/>
+        </DockPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="3" Padding="6,0,6,0" Command="{Binding CopyCommand}" Content="_Copy" />
+            <Button Margin="3" Padding="6,0,6,0" Command="{Binding ClearCommand}" Content="C_lear"/>
+            <Button Margin="3" Padding="6,0,6,0" Command="{Binding CloseCommand}" Content="Clo_se"/>
+        </StackPanel>
+        <DockPanel Margin="3" Grid.Row="2">
+            <Label DockPanel.Dock="Left">Selected File Path:</Label>
+            <Button Content="_Browse..." Command="{Binding BrowseCommand}" 
+                    DockPanel.Dock="Right" Margin="3" Padding="6,0,6,0"/>
+            <TextBox IsReadOnly="True" IsReadOnlyCaretVisible="True" Margin="3"
+                     Text="{Binding FilePath, Mode=TwoWay}"/>
+        </DockPanel>
     </Grid>
 </Window>
